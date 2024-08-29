@@ -1,6 +1,7 @@
 <script>
 import MyButton from './components/ui/MyButton.vue';
 import MainContactDiv from './components/ui/MainContactDiv.vue';
+import NewFriend from '@/components/ui/NewFriend.vue'
 
 export default {
   data() { 
@@ -20,29 +21,24 @@ export default {
           email: "julie@localhost.com",
           
         },
-        {
-          id: "arch",
-          name: "Arrrrrchynbek",
-          phone: "123 44328 90",
-          email: "julie@localhost.com",
-          
-        },
-        {
-          id: "saksh",
-          name: "Sakshbek",
-          phone: "123 44328 90",
-          email: "julie@localhost.com",
-          
-        },
       ],
     };
   },
   components: {
     MyButton,
-    MainContactDiv
+    MainContactDiv,
+    NewFriend
   },
   methods: {
-    
+    addingCont(name, phone,email){
+      const NewFriendContact = {
+        id: Date.now().toString(),
+        name: name,
+        phone: phone,
+        email: email
+      }
+      this.friends.push(NewFriendContact)
+    }
   }
 }
 </script>
@@ -53,6 +49,10 @@ export default {
     <div class="navbar">
        <h1>My Contacts</h1>
     </div>
+
+    <NewFriend @add-contact="addingCont" >
+
+    </NewFriend>
 
     <MainContactDiv
     v-for="friend in friends"
